@@ -31,7 +31,15 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Gates determined based on Physical AI & Humanoid Robotics Constitution:
+- Uses ROS 2 for robotic communication (if robotics project)
+- Simulation-first approach applied (if robotics project)
+- Physics-grounded learning emphasized (if AI/robotics project)
+- GPU-accelerated processing implemented (if perception/training project)
+- VLA (Vision-Language-Action) cognitive stack utilized (if AI project)
+- System architecture follows Digital Twin, Edge Brain, Sensor Stack, and Actuation Layer principles
+- Safety constraints addressed (if hardware involved)
+- Ethics guidelines followed (if AI/embodied system project)
 
 ## Project Structure
 

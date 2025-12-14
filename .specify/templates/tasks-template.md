@@ -62,12 +62,12 @@ description: "Task list template for feature implementation"
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T004 Setup ROS 2 communication framework (if robotics project)
+- [ ] T005 [P] Configure simulation environment (simulation-first approach)
+- [ ] T006 [P] Implement physics-grounded learning components (no black-box abstractions)
+- [ ] T007 Configure GPU acceleration for perception and training (if applicable)
+- [ ] T008 Configure Vision-Language-Action cognitive stack (if AI project)
+- [ ] T009 Setup Digital Twin environment (Isaac Sim/Gazebo/Unity)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -154,7 +154,8 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX Code cleanup and refactoring
 - [ ] TXXX Performance optimization across all stories
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Security hardening
+- [ ] TXXX Safety constraint implementation (if hardware involved)
+- [ ] TXXX Ethics guidelines compliance check
 - [ ] TXXX Run quickstart.md validation
 
 ---

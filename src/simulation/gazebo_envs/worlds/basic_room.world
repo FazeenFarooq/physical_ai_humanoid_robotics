@@ -1,0 +1,161 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="basic_room">
+    <!-- Include the sun -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Basic room with walls -->
+    <model name="room_walls">
+      <pose>0 0 2.5 0 0 0</pose>
+      <static>true</static>
+      
+      <!-- Back wall -->
+      <link name="back_wall">
+        <pose>0 -5 2.5 0 0 0</pose>
+        <collision name="back_wall_collision">
+          <geometry>
+            <box>
+              <size>10 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="back_wall_visual">
+          <geometry>
+            <box>
+              <size>10 0.2 5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      
+      <!-- Front wall -->
+      <link name="front_wall">
+        <pose>0 5 2.5 0 0 3.14159</pose>
+        <collision name="front_wall_collision">
+          <geometry>
+            <box>
+              <size>10 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="front_wall_visual">
+          <geometry>
+            <box>
+              <size>10 0.2 5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      
+      <!-- Left wall -->
+      <link name="left_wall">
+        <pose>-5 0 2.5 0 0 1.5708</pose>
+        <collision name="left_wall_collision">
+          <geometry>
+            <box>
+              <size>10 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="left_wall_visual">
+          <geometry>
+            <box>
+              <size>10 0.2 5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      
+      <!-- Right wall -->
+      <link name="right_wall">
+        <pose>5 0 2.5 0 0 -1.5708</pose>
+        <collision name="right_wall_collision">
+          <geometry>
+            <box>
+              <size>10 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="right_wall_visual">
+          <geometry>
+            <box>
+              <size>10 0.2 5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- A few simple objects for the robot to interact with -->
+    <model name="table">
+      <pose>-2 -2 0.4 0 0 0</pose>
+      <link name="table_top">
+        <collision name="table_collision">
+          <geometry>
+            <box>
+              <size>1.0 0.8 0.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="table_visual">
+          <geometry>
+            <box>
+              <size>1.0 0.8 0.8</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.4 0.2 1</ambient>
+            <diffuse>0.6 0.4 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="box">
+      <pose>2 2 0.1 0 0 0</pose>
+      <link name="box_link">
+        <collision name="box_collision">
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="box_visual">
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.6 0.8 1</ambient>
+            <diffuse>0.2 0.6 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

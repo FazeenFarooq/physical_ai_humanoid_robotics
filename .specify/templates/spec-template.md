@@ -84,11 +84,11 @@
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: System MUST use ROS 2 for all robotic communication (if robotics project)
+- **FR-002**: System MUST follow simulation-first, sim-to-real methodology (if robotics project)
+- **FR-003**: System MUST implement physics-grounded learning without "black-box" abstractions
+- **FR-004**: System MUST utilize GPU-accelerated processing for perception and training (if applicable)
+- **FR-005**: System MUST implement Vision-Language-Action cognitive stack (if AI project)
 
 *Example of marking unclear requirements:*
 
