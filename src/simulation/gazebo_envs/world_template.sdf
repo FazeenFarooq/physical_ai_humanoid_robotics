@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- Template for Gazebo World Files -->
+<sdf version="1.7">
+  <world name="template_world">
+    <!-- Include common models -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Example static objects -->
+    <model name="table">
+      <pose>0 0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </visual>
+        <pose>0 0 0.5 0 0 0</pose>
+      </link>
+    </model>
+
+    <!-- Example articulated robot (to be replaced with actual robot model) -->
+    <!-- Models will be loaded separately -->
+  </world>
+</sdf>

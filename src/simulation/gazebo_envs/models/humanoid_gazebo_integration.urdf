@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<!-- Basic Humanoid Robot Model for Gazebo Integration -->
+<robot name="basic_humanoid_gazebo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- Include the base humanoid model -->
+  <xacro:include filename="$(find basic_humanoid)/urdf/basic_humanoid.urdf" />
+
+  <!-- Gazebo-specific configurations for the humanoid -->
+  
+  <!-- Base/Pelvis Link -->
+  <gazebo reference="base_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <!-- Torso -->
+  <gazebo reference="torso">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Blue</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <!-- Head -->
+  <gazebo reference="head">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/White</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <!-- Arms -->
+  <gazebo reference="left_shoulder">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="left_upper_arm">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="left_lower_arm">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="right_shoulder">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="right_upper_arm">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="right_lower_arm">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <!-- Legs -->
+  <gazebo reference="left_thigh">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="left_shin">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="left_foot">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="right_thigh">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="right_shin">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <gazebo reference="right_foot">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <material>Gazebo/Grey</material>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <maxVel>1.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+
+  <!-- Sensors -->
+  <gazebo reference="imu_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+    </sensor>
+  </gazebo>
+
+  <!-- RGB-D Camera -->
+  <gazebo reference="camera_link">
+    <sensor name="camera" type="depth">
+      <always_on>true</always_on>
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>10</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30.0</updateRate>
+        <cameraName>camera</cameraName>
+        <imageTopicName>rgb/image_raw</imageTopicName>
+        <depthImageTopicName>depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+        <frameName>camera_optical_frame</frameName>
+        <distortion_k1>0.0</distortion_k1>
+        <distortion_k2>0.0</distortion_k2>
+        <distortion_k3>0.0</distortion_k3>
+        <distortion_t1>0.0</distortion_t1>
+        <distortion_t2>0.0</distortion_t2>
+        <CxPrime>0.0</CxPrime>
+        <Cx>0.0</Cx>
+        <Cy>0.0</Cy>
+        <focalLength>0.0</focalLength>
+        <hackBaseline>0.0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- ROS Control plugin for joint control -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/basic_humanoid</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+</robot>

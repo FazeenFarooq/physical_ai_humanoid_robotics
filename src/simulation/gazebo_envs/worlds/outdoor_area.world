@@ -1,0 +1,174 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="outdoor_area">
+    <!-- Include the sun -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Ground plane with outdoor texture -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Outdoor terrain with uneven surface -->
+    <model name="terrain">
+      <static>true</static>
+      <link name="terrain_link">
+        <collision name="collision">
+          <geometry>
+            <heightmap>
+              <uri>model://ground_plane/meshes/ground_plane.dae</uri>
+              <size>10 10 1</size>
+            </heightmap>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <heightmap>
+              <uri>model://ground_plane/meshes/ground_plane.dae</uri>
+              <size>10 10 1</size>
+            </heightmap>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Outdoor obstacles -->
+    <model name="tree1">
+      <pose>-3 -2 0 0 0 0</pose>
+      <link name="trunk">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>2.0</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>2.0</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.5 0.2 0.1 1</ambient>
+            <diffuse>0.5 0.2 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <link name="leaves">
+        <pose>0 0 1.5 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.8</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.8</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.5 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      <joint name="leaves_joint" type="fixed">
+        <parent>trunk</parent>
+        <child>leaves</child>
+      </joint>
+    </model>
+
+    <model name="rock1">
+      <pose>2 3 0 0 0 0</pose>
+      <link name="base">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>file://media/meshes/rock1.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>file://media/meshes/rock1.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="bench">
+      <pose>0 -3 0 0 0 0</pose>
+      <link name="base">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.4 0.4</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.4 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.4 0.2 1</ambient>
+            <diffuse>0.6 0.4 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Navigation markers -->
+    <model name="waypoint1">
+      <pose>-4 0 0.5 0 0 0</pose>
+      <link name="base">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 0 1</ambient>
+            <diffuse>1 1 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="waypoint2">
+      <pose>4 0 0.5 0 0 0</pose>
+      <link name="base">
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.1</radius>
+              <length>1</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 1 1 1</ambient>
+            <diffuse>0 1 1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

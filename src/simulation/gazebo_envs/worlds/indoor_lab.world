@@ -1,0 +1,212 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="indoor_lab">
+    <!-- Include the sun -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Lab room with walls -->
+    <model name="lab_room">
+      <pose>0 0 2.5 0 0 0</pose>
+      <static>true</static>
+      
+      <!-- Back wall -->
+      <link name="back_wall">
+        <pose>0 -4 2.5 0 0 0</pose>
+        <collision name="back_wall_collision">
+          <geometry>
+            <box>
+              <size>8 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="back_wall_visual">
+          <geometry>
+            <box>
+              <size>8 0.2 5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      
+      <!-- Front wall -->
+      <link name="front_wall">
+        <pose>0 4 2.5 0 0 3.14159</pose>
+        <collision name="front_wall_collision">
+          <geometry>
+            <box>
+              <size>8 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="front_wall_visual">
+          <geometry>
+            <box>
+              <size>8 0.2 5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      
+      <!-- Left wall -->
+      <link name="left_wall">
+        <pose>-4 0 2.5 0 0 1.5708</pose>
+        <collision name="left_wall_collision">
+          <geometry>
+            <box>
+              <size>8 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="left_wall_visual">
+          <geometry>
+            <box>
+              <size>8 0.2 5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+      
+      <!-- Right wall -->
+      <link name="right_wall">
+        <pose>4 0 2.5 0 0 -1.5708</pose>
+        <collision name="right_wall_collision">
+          <geometry>
+            <box>
+              <size>8 0.2 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="right_wall_visual">
+          <geometry>
+            <box>
+              <size>8 0.2 5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Lab equipment -->
+    <model name="workbench">
+      <pose>-2 -1 0.5 0 0 0</pose>
+      <link name="base">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 0.8 0.8</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.2 0.1 1</ambient>
+            <diffuse>0.3 0.2 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="shelf">
+      <pose>2 2 0.6 0 0 0</pose>
+      <link name="base">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.3 1.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.3 1.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.5 0.5 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Navigation obstacles -->
+    <model name="obstacle1">
+      <pose>-1 1 0.2 0 0 0</pose>
+      <link name="base">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.2</radius>
+              <length>0.4</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.2</radius>
+              <length>0.4</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle2">
+      <pose>1 -2 0.15 0 0 0</pose>
+      <link name="base">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.3 0.3 0.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0 1 0 1</ambient>
+            <diffuse>0 1 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>
