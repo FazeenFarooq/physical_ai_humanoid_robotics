@@ -1,0 +1,143 @@
+# Jetson Orin Deployment Configuration
+# Configuration parameters for deploying AI/robotics applications on NVIDIA Jetson AGX Orin
+
+deployment:
+  platform: "nvidia-jetson-agx-orin"
+  os: "Linux aarch64"
+  target: "jetson-orin-nx"
+  
+# Hardware specifications
+hardware:
+  cpu_cores: 8
+  cpu_architecture: "AARCH64"
+  gpu: "NVIDIA Ampere GPU with 2048 CUDA cores"
+  memory:
+    total: "32GB LPDDR5"
+    reserved_for_gpu: "8GB"
+  storage:
+    type: "64GB eMMC"
+    recommended_free_space: "20GB"
+  thermal_design_power:
+    default: "25W"
+    boost_mode: "35W"
+  
+# Software environment
+environment:
+  cuda_version: "12.2"
+  tensorrt_version: "8.6"
+  ros_version: "humble"
+  python_version: "3.10"
+  opencv_version: "4.8.0"
+  opencv_contrib: true
+  
+# Deployment paths
+paths:
+  workspace: "/home/jetson_ws"
+  source_dir: "/home/jetson_ws/src"
+  install_dir: "/home/jetson_ws/install"
+  log_dir: "/var/log/jetson-robot"
+  config_dir: "/etc/jetson-robot"
+  model_dir: "/home/jetson_ws/models"
+  
+# Performance parameters
+performance:
+  max_cpu_percentage: 80
+  max_gpu_percentage: 85
+  max_memory_percentage: 80
+  real_time_priority: 85
+  cpu_governor: "performance"
+  gpu_boost: true
+  
+# Network configuration
+network:
+  ros_domain_id: 42
+  robot_name: "jetson-orin-robot"
+  multicast: true
+  qos_profile: "sensor_data"
+  max_bandwidth_mbps: 1000
+  
+# AI/ML settings
+ai_ml:
+  tensorrt:
+    precision: "fp16"  # Options: fp32, fp16, int8
+    optimization_level: 3
+    dynamic_batching: true
+    max_batch_size: 32
+    workspace_size: "2048MB"
+  model_compression:
+    enabled: true
+    compression_type: "quantization"
+    target_size_mb: 500
+    
+# Safety and control
+safety:
+  emergency_stop_topic: "/emergency_stop"
+  safety_controller_freq: 50  # Hz
+  watchdog_timeout: 2.0  # seconds
+  position_limits:
+    enabled: true
+    tolerance: 0.01  # meters
+  velocity_limits:
+    enabled: true
+    max_linear_vel: 1.0  # m/s
+    max_angular_vel: 1.5  # rad/s
+    
+# Monitoring and logging
+monitoring:
+  system_monitoring:
+    enabled: true
+    frequency: 1.0  # Hz
+    metrics:
+      - cpu_usage
+      - gpu_usage
+      - memory_usage
+      - temperature
+      - power_consumption
+  logging:
+    level: "INFO"
+    format: "json"
+    max_log_size_mb: 100
+    max_log_files: 10
+    log_to_file: true
+    log_to_console: false
+    
+# Hardware interfaces
+interfaces:
+  cameras:
+    primary_camera: "/dev/video0"
+    calibration_file: "/etc/jetson-robot/cameras/primary.yaml"
+    resolution: [1920, 1080]
+    fps: 30
+  lidar:
+    device_path: "/dev/ttyUSB0"
+    baud_rate: 115200
+    topic_name: "/scan"
+  imu:
+    device_path: "/dev/i2c-1"
+    topic_name: "/imu/data"
+  gps:
+    device_path: "/dev/ttyS0"
+    topic_name: "/gps/fix"
+    
+# Power management
+power_management:
+  enabled: true
+  sleep_timeout: 300  # seconds
+  power_profile: "balanced"
+  battery_monitoring:
+    enabled: true
+    voltage_topic: "/battery/voltage"
+    low_threshold: 11.0  # volts
+    critical_threshold: 10.5  # volts
+    
+# Containerization (if using Docker)
+container:
+  enabled: true
+  runtime: "nvidia"
+  base_image: "nvcr.io/nvidia/ros:humble-ros-base-l4t-r35.4.1"
+  gpu_support: true
+  privileged: false
+  shm_size: "2gb"
+  volume_mappings:
+    - "/tmp:/tmp"
+    - "/var/run/dbus:/var/run/dbus"

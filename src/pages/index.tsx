@@ -24,6 +24,9 @@ function HomepageHeader() {
             Docusaurus Tutorial - 5min ⏱️
           </Link>
         </div>
+        <div className={styles.uid}>
+          &lt;Physical-AI-Humanoid-Robotics-&gt;
+        </div>
       </div>
     </header>
   );
