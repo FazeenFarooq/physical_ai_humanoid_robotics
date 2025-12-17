@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'AI-Driven Physical Robotics',
+  tagline: 'Creating Humanoid Robots with Advanced AI Systems',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -22,8 +22,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'ai-robotics', // Usually your GitHub org/user name.
+  projectName: 'ai-textbook', // Usually your repo name.
 
   onBrokenLinks: 'throw',
 
@@ -68,6 +68,7 @@ const config: Config = {
     ],
   ],
 
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -75,9 +76,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'AI Robotics',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'AI Robotics Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -85,11 +86,11 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Book Chapters',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/blog', label: 'Research', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/ai-robotics/ai-textbook',
           label: 'GitHub',
           position: 'right',
         },
@@ -99,11 +100,19 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Chapters',
           items: [
             {
-              label: 'Tutorial',
+              label: 'Introduction',
               to: '/docs/intro',
+            },
+            {
+              label: 'ROS 2 Framework',
+              to: '/docs/ros2-fundamentals',
+            },
+            {
+              label: 'AI & Perception',
+              to: '/docs/ai-perception',
             },
           ],
         },
@@ -111,16 +120,12 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://discordapp.com/invite/ai-robotics',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Twitter',
+              href: 'https://twitter.com/ai_robotics',
             },
           ],
         },
@@ -128,17 +133,17 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
+              label: 'Research Blog',
               to: '/blog',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/ai-robotics/ai-textbook',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} AI-Driven Physical Robotics. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

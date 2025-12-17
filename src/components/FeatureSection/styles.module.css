@@ -1,0 +1,110 @@
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.sectionHeader h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.5rem;
+  color: #D4AF37;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  display: inline-block;
+  margin: 0;
+}
+
+.sectionContainer {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #0A0A12 0%, #121220 100%);
+  color: #C0C0C0;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.featureCard {
+  background: rgba(18, 18, 32, 0.8);
+  border: 1px solid #00D4FF;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+  border-color: #D4AF37;
+}
+
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00D4FF, #D4AF37, #00D4FF);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.featureCard:hover::before {
+  opacity: 1;
+}
+
+.featureImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 1px solid #00D4FF;
+}
+
+.featureTitle {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1.5rem;
+  color: #D4AF37;
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.featureDescription {
+  color: #C0C0C0;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.featureButton {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(45deg, #D4AF37, #F9C846);
+  color: #0A0A12;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  align-self: flex-end;
+}
+
+.featureButton:hover {
+  background: linear-gradient(45deg, #F9C846, #D4AF37);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  transform: scale(1.02);
+}

@@ -1,0 +1,114 @@
+# Hardware and Software Stack Configuration for Research Validation
+# This file defines standardized configurations for reproducible research experiments
+# in the Physical AI & Humanoid Robotics course.
+
+version: "1.0"
+created: "2025-12-16"
+description: "Standardized hardware and software stack configuration for research experiments"
+
+# Hardware Configuration
+hardware:
+  # Workstation specifications
+  workstation:
+    cpu: "AMD Ryzen 7 7800X3D or Intel i7-13700K (or equivalent)"
+    gpu: "NVIDIA RTX 4090 with 24GB+ VRAM (minimum requirement)"
+    ram: "64GB DDR5"
+    storage: "2TB NVMe SSD"
+    os: "Ubuntu 22.04 LTS"
+    
+  # Jetson Orin specifications
+  jetson_orin:
+    model: "NVIDIA Jetson AGX Orin Developer Kit"
+    cpu: "ARM Cortex-A78AE (64-bit)"
+    gpu: "NVIDIA Ampere Architecture with 2048 CUDA Cores"
+    dla: "2x Deep Learning Accelerators"
+    ram: "32GB LPDDR5"
+    storage: "256GB eMMC 5.1"
+    os: "NVIDIA Jetson Linux"
+    jetpack_version: "5.1 or higher"
+    
+  # Robot Platform Specifications
+  robot_platforms:
+    unitree_h1:
+      name: "Unitree H1 Humanoid Robot"
+      joints: 23 DoF
+      height: "1.35m"
+      weight: "47kg"
+      battery_life: "2+ hours"
+      sensors: ["IMU", "force/torque sensors", "encoders"]
+      
+    turtlebot4:
+      name: "TurtleBot 4 Standard/Elite"
+      navigation: "SLAM and Navigation2"
+      sensors: ["RGB-D camera", "2D LiDAR", "IMU"]
+      base: "differential drive or omnidirectional"
+
+# Software Stack Configuration
+software_stack:
+  # OS and Base Tools
+  operating_system: "Ubuntu 22.04 LTS"
+  ros_distribution: "ROS 2 Humble Hawksbill"
+  
+  # Simulation Environment
+  simulation:
+    gazebo: "Gazebo Garden"
+    isaac_sim: "Isaac Sim for high-fidelity sensor simulation"
+    unity: "Unity Robotics Simulation (optional)"
+    
+  # AI and Machine Learning Frameworks
+  ai_ml:
+    cuda_version: "CUDA 12.2"
+    pytorch: "PyTorch 2.0+"
+    tensorrt: "TensorRT 8.6"
+    transformers: "HuggingFace Transformers"
+    openai: "OpenAI API (where applicable)"
+    
+  # Development Tools
+  development:
+    python_version: "Python 3.10+"
+    vcs: "git"
+    build_system: "colcon (for ROS 2 packages)"
+    containerization: "Docker (where applicable)"
+    
+  # Safety and Compliance
+  safety:
+    emergency_stop: "Enabled and tested"
+    safety_controllers: "Active"
+    collision_avoidance: "Active during autonomous operation"
+    
+# Network Configuration
+network:
+  # ROS 2 Domain ID (to isolate from other ROS systems)
+  ros_domain_id: 0
+  
+  # Network interfaces used
+  interfaces:
+    - "localhost"  # For single machine operation
+    - "eth0"       # For robot communication
+    - "wlan0"      # For remote access
+    
+# Performance Targets
+performance_targets:
+  # Simulation performance
+  simulation_framerate: "30+ FPS"
+  
+  # Real-time requirements
+  perception_pipeline: "<100ms"
+  planning_pipeline: "<200ms"
+  control_loop: "<50ms"
+  nav_system_update: "<100ms"
+  
+# Resource Limits
+resource_limits:
+  cpu_usage: "80% max"
+  gpu_usage: "85% max"
+  memory_usage: "75% max"
+  disk_usage: "90% max"
+  
+# Validation Requirements
+validation_requirements:
+  # Hardware validation
+  hardware_compatibility: "Verified against specifications above"
+  software_compatibility: "Verified with specified versions"
+  safety_compliance: "Verified with safety protocols active"
+  performance_verification: "Benchmarked against targets above"

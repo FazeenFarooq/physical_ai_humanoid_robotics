@@ -3,7 +3,7 @@
 **Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
 **Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
 
-**Note**: This template is filled in by the `/sp.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+**Note**: This template is filled in by the `/sp.plan` command. See `.specify/scripts/powershell/` for the execution workflow.
 
 ## Summary
 
@@ -31,15 +31,26 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-Gates determined based on Physical AI & Humanoid Robotics Constitution:
-- Uses ROS 2 for robotic communication (if robotics project)
-- Simulation-first approach applied (if robotics project)
-- Physics-grounded learning emphasized (if AI/robotics project)
-- GPU-accelerated processing implemented (if perception/training project)
-- VLA (Vision-Language-Action) cognitive stack utilized (if AI project)
-- System architecture follows Digital Twin, Edge Brain, Sensor Stack, and Actuation Layer principles
-- Safety constraints addressed (if hardware involved)
-- Ethics guidelines followed (if AI/embodied system project)
+Gates determined based on Integrated RAG Chatbot Constitution:
+- Groundedness: All responses must derive strictly from retrieved book content (MANDATORY)
+- Non-hallucination: Respond with uncertainty if relevant context is unavailable (MANDATORY)
+- Context priority: User-selected text always overrides global retrieval (MANDATORY)
+- Determinism: Same inputs should yield semantically consistent outputs (MANDATORY)
+- Transparency: Indicate when answers are based on selected text vs global context (MANDATORY)
+- Uses high-quality embedding API for all vector embeddings (MANDATORY - Current implementation uses Qwen, Cohere also acceptable)
+- Uses high-quality LLM API for text generation (MANDATORY - Current implementation uses OpenRouter, Cohere Command/Command-R also acceptable)
+- Backend implemented with FastAPI (async, Python) (MANDATORY)
+- Vector store implemented with Qdrant Cloud Free Tier (MANDATORY)
+- Database implemented with Neon Serverless PostgreSQL (MANDATORY)
+- Frontend integrated into Docusaurus with custom backend integration (MANDATORY)
+- Retrieval occurs before generation in every response (MANDATORY)
+- Generation forbidden without retrieved context meeting quality thresholds (MANDATORY)
+- Selected-text mode restricts retrieval to user-selected text only (MANDATORY)
+- Zero hallucinated answers achieved (SUCCESS CRITERIA)
+- Accurate, context-bound responses maintained (SUCCESS CRITERIA)
+- Seamless embedding inside Docusaurus pages (SUCCESS CRITERIA)
+- Reliable performance on Cohere APIs (SUCCESS CRITERIA)
+- Fallback to "insufficient information" response when retrieval score < threshold (FAILURE HANDLING)
 
 ## Project Structure
 

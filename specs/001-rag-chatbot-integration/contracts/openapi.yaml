@@ -1,0 +1,135 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API
+  description: API for the Retrieval-Augmented Generation Chatbot embedded in the AI textbook
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+  - url: http://localhost:8000/v1
+    description: Development server
+
+paths:
+  /query:
+    post:
+      summary: Process a user query against the textbook content
+      description: >-
+        Accepts a user question and optional selected text, performs retrieval-augmented generation,
+        and returns an answer based on the textbook content with proper citations.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Successful response with answer and sources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+        '400':
+          description: Bad request - invalid input
+        '500':
+          description: Internal server error
+      security:
+        - BearerAuth: []
+
+  /health:
+    get:
+      summary: Check system health
+      description: Returns the health status of the RAG chatbot system
+      responses:
+        '200':
+          description: System is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '500':
+          description: System is unhealthy
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    QueryRequest:
+      type: object
+      properties:
+        question:
+          type: string
+          description: The user's question about the textbook content
+          example: "Can you explain how transformers work in NLP?"
+        selected_text:
+          type: string
+          description: Optional text selected by the user to constrain the AI's knowledge source
+          example: "Transformers are a type of neural network architecture introduced in 2017..."
+        session_id:
+          type: string
+          description: Optional session identifier for tracking conversation history
+          format: uuid
+          example: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+      required:
+        - question
+
+    QueryResponse:
+      type: object
+      properties:
+        response:
+          type: string
+          description: The AI's answer to the user's question
+          example: "Transformers are a neural network architecture that relies on attention mechanisms..."
+        sources:
+          type: array
+          description: Citations to specific parts of the textbook that form the basis of the response
+          items:
+            $ref: '#/components/schemas/Source'
+        retrieval_mode:
+          type: string
+          description: Indicates which retrieval mode was used
+          enum: [selected-text, global]
+          example: "selected-text"
+        session_id:
+          type: string
+          description: The session identifier
+          format: uuid
+          example: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+
+    Source:
+      type: object
+      properties:
+        chapter_id:
+          type: string
+          description: Identifier for the chapter containing the source material
+          example: "ch03-transformers"
+        page_url:
+          type: string
+          description: URL of the page containing the source material
+          example: "/nlp/transformers"
+        content:
+          type: string
+          description: Excerpt of the source material used
+          example: "The transformer model uses self-attention mechanisms to weigh the importance of different words..."
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Health status of the system
+          enum: [healthy, unhealthy]
+          example: "healthy"
+        timestamp:
+          type: string
+          format: date-time
+          description: Time when health was checked
+          example: "2025-12-17T10:00:00Z"
+        details:
+          type: object
+          description: Additional health details
+          additionalProperties: true

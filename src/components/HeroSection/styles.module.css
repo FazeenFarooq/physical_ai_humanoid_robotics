@@ -1,0 +1,204 @@
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0A0A12 0%, #121220 100%);
+  color: #C0C0C0;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+    min-height: auto;
+  }
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 996px) {
+  .heroContent {
+    flex-direction: column;
+  }
+}
+
+.bookCoverContainer {
+  flex: 0 0 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 996px) {
+  .bookCoverContainer {
+    flex: none;
+  }
+}
+
+.bookCover {
+  width: 250px;
+  height: 350px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.bookCover:hover {
+  transform: rotateY(10deg);
+  transition: transform 0.5s ease;
+}
+
+.bookSpine {
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(90deg, #D4AF37, #F9C846);
+  left: 0;
+  border-radius: 4px 0 0 4px;
+  box-shadow: 5px 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.bookFront {
+  position: absolute;
+  width: 240px;
+  height: 340px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  left: 20px;
+  border: 2px solid #00D4FF;
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+  transform: rotateY(5deg);
+}
+
+.bookFront::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 0 6px 6px 0;
+  pointer-events: none;
+}
+
+.heroTitle {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 0 0 1rem 0;
+  color: #00D4FF;
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.7);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroText {
+  flex: 1;
+  text-align: left;
+  padding: 0 2rem;
+}
+
+@media screen and (max-width: 996px) {
+  .heroText {
+    padding: 2rem 0;
+    text-align: center;
+  }
+}
+
+.mainTitle {
+  font-family: 'Orbitron', monospace;
+  font-size: 3.5rem;
+  margin: 0 0 1.5rem 0;
+  color: #C0C0C0;
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+}
+
+@media screen and (max-width: 996px) {
+  .mainTitle {
+    font-size: 2.5rem;
+  }
+}
+
+.heroSubtitle {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin: 0 0 2rem 0;
+  color: #C0C0C0;
+  max-width: 600px;
+}
+
+.buttons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 996px) {
+  .buttons {
+    justify-content: center;
+  }
+}
+
+.primaryButton {
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, #D4AF37, #F9C846);
+  color: #0A0A12;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.primaryButton:hover {
+  background: linear-gradient(45deg, #F9C846, #D4AF37);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+  transform: translateY(-3px);
+}
+
+.secondaryButton {
+  padding: 1rem 2rem;
+  background: transparent;
+  color: #00D4FF;
+  border: 2px solid #00D4FF;
+  border-radius: 4px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.secondaryButton:hover {
+  background: rgba(0, 212, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  transform: translateY(-3px);
+}
