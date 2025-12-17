@@ -62,12 +62,12 @@ description: "Task list template for feature implementation"
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup ROS 2 communication framework (if robotics project)
-- [ ] T005 [P] Configure simulation environment (simulation-first approach)
-- [ ] T006 [P] Implement physics-grounded learning components (no black-box abstractions)
-- [ ] T007 Configure GPU acceleration for perception and training (if applicable)
-- [ ] T008 Configure Vision-Language-Action cognitive stack (if AI project)
-- [ ] T009 Setup Digital Twin environment (Isaac Sim/Gazebo/Unity)
+- [ ] T004 Setup high-quality embedding API integration for vector storage (Currently Qwen, Cohere also acceptable)
+- [ ] T005 [P] Configure Qdrant Cloud Free Tier vector store
+- [ ] T006 [P] Configure high-quality LLM API for text generation (Currently OpenRouter, Cohere Command/Command-R also acceptable)
+- [ ] T007 Configure FastAPI backend (async, Python)
+- [ ] T008 Setup Neon Serverless PostgreSQL for chat history storage
+- [ ] T009 Configure Docusaurus integration with custom backend
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -154,8 +154,10 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX Code cleanup and refactoring
 - [ ] TXXX Performance optimization across all stories
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Safety constraint implementation (if hardware involved)
-- [ ] TXXX Ethics guidelines compliance check
+- [ ] TXXX Groundedness principle compliance check (all responses from book content)
+- [ ] TXXX Non-hallucination principle compliance check (uncertainty responses when needed)
+- [ ] TXXX Context priority principle compliance check (selected-text overrides global)
+- [ ] TXXX Data privacy and logging compliance check
 - [ ] TXXX Run quickstart.md validation
 
 ---

@@ -1,92 +1,151 @@
 <!-- SYNC IMPACT REPORT
-Version change: 1.0.0 → 1.0.0 (initial creation)
-Added sections: Core Philosophy, Technical Principles, Pedagogical Rules, System Architecture Canon, Assessment Ethos, Ethics & Safety
-Removed sections: None (completely new constitution)
-Templates requiring updates: ⚠ pending - .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
+Version change: 1.0.0 → 1.0.1 (updated for implementation flexibility)
+Added sections: None
+Removed sections: None
+Modified principles: AI Stack (Embeddings and Generation sections updated to allow for implementation flexibility while maintaining core requirements)
+Templates requiring updates: ✅ updated - .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
 Follow-up TODOs: None
 -->
-# Physical AI & Humanoid Robotics Constitution
+# Integrated RAG Chatbot Constitution
 
-## Core Philosophy
+## Core Principles
 
-### Definition of Physical AI and Embodied Intelligence
-Physical AI encompasses artificial intelligence systems that operate within and interact with the physical world through sensors and actuators. Embodied Intelligence refers to the theory that intelligence emerges from the interaction between an agent and its environment. Intelligence is not merely computation but arises from sensorimotor coupling with the physical world.
+### Groundedness
+All chatbot answers MUST be strictly derived from retrieved book content. The system must not generate responses based on external knowledge or internal training data alone. Every assertion in the response must trace back to a specific portion of the book's content.
 
-### Significance of Humanoid Form Factors
-Humanoid form factors provide the optimal platform for human environments, enabling robots to navigate spaces designed for humans. The anthropomorphic design facilitates intuitive human-robot interaction and leverages millennia of human-designed infrastructure. This form enables universal manipulation capabilities across diverse environments.
+### Non-hallucination
+If relevant context is unavailable in the retrieved documents, the chatbot must respond with explicit uncertainty rather than fabricating information. Responses should acknowledge limitations and avoid making claims outside the provided context.
 
-### Transition from Digital-Only AI to Physically Grounded Intelligence
-The transition from digital-only AI to physically grounded intelligence represents the evolution from abstract pattern recognition to situated cognition. Physical grounding provides the necessary embodiment for developing true understanding, context awareness, and adaptive behaviors essential for real-world applications.
+### Context Priority
+User-selected text always overrides global retrieval when the "Selected-Text-Only" mode is activated. The system must constrain all processing and response generation to the explicitly selected text range provided by the user.
 
-## Non-Negotiable Technical Principles
+### Determinism
+Given identical inputs (query + context), the system should yield semantically consistent outputs. While some variation is acceptable due to the probabilistic nature of LLMs, core meaning and factual content must remain stable.
 
-### ROS 2 as the Robotic Nervous System
-ROS 2 (Robot Operating System 2) serves as the standard communication framework for all robotic systems. All modules must communicate via ROS 2 topics, services, and actions to ensure interoperability, modularity, and scalability. This creates a unified nervous system for complex humanoid robots.
+### Transparency
+The system must clearly indicate when answers are based on user-selected text versus global context retrieved from the broader book content. This helps establish trust and sets appropriate expectations.
 
-### Simulation-First, Sim-to-Real Methodology
-All development begins in simulation to enable rapid iteration without hardware risk. Simulation environments must accurately model physics, sensors, and environmental conditions to enable successful transfer to real hardware. This methodology reduces development cycles and increases safety.
+## AI Stack (MANDATORY)
 
-### Physics-Grounded Learning
-Understanding of physical laws, mechanics, and dynamics is fundamental to all learning algorithms. No "black-box" abstractions shall hide the underlying physics principles that govern robot-environment interaction. All students must understand the mathematical foundations of their implementations.
+### Embeddings
+All vector embeddings must utilize a high-quality API to maintain consistency and compatibility with the overall system architecture. (Current implementation uses Qwen embeddings as specified in requirements, but Cohere API is also acceptable per original constitution)
 
-### GPU-Accelerated Perception and Training (NVIDIA Isaac)
-Perception and learning tasks require GPU acceleration for real-time performance. NVIDIA Isaac ecosystem provides the standardized computational platform for vision processing, neural network inference, and reinforcement learning. All systems must be designed for GPU deployment.
+### Generation
+Text generation must exclusively use a high-quality LLM API to ensure alignment with the project's AI technology choices and performance requirements. (Current implementation uses OpenRouter-hosted LLMs as specified in requirements, but Cohere Command/Command-R is also acceptable per original constitution)
 
-### Vision-Language-Action (VLA) as the Cognitive Stack
-The cognitive architecture follows a Vision-Language-Action pipeline: perceive the environment through multi-modal sensing, interpret through language-based reasoning, execute through motor control. This stack enables complex task understanding and execution.
+### Backend
+The backend must be implemented with FastAPI using async Python to handle concurrent requests efficiently and provide a clean RESTful interface.
 
-## Pedagogical Rules
+### Vector Store
+All document embeddings must be stored in Qdrant Cloud Free Tier for vector similarity search and retrieval operations.
 
-### Learning by Building, Not Watching
-Students acquire knowledge through hands-on construction of physical or simulated systems. Passive consumption of information yields to active building, debugging, and iterating. Theory emerges from practice, not the reverse.
+### Database
+Chat history, queries, retrieved document IDs, and responses must be stored in Neon Serverless PostgreSQL for persistence and analytics.
 
-### Physical Mapping Requirement
-Every conceptual understanding must connect to a physical or simulated actuator, sensor, or system behavior. Students must be able to demonstrate how abstract concepts manifest in embodied systems. No purely theoretical learning without physical connection.
+### Frontend
+The user interface must be integrated directly into Docusaurus pages using custom integration with OpenAI Agents or ChatKit SDK as appropriate.
 
-### Code-First, Documentation-Second
-Implementation precedes documentation. Students write code that works, then document lessons learned. Working systems take priority over perfect documentation, though both are eventually required for project completion.
+## Operational Rules
 
-### Industry Realism over Academic Simplification
-Laboratory exercises mirror real-world constraints, including limited computational resources, noisy sensor data, imperfect calibration, and hardware failure modes. Simplifications mask critical challenges that must be addressed in professional contexts.
+### Retrieval Precedence
+Retrieval MUST occur before generation in every response cycle. The system is forbidden from generating answers without first retrieving relevant context from the book.
 
-## System Architecture Canon
+### Generation Constraints
+Generation is strictly forbidden without retrieved context meeting minimum quality thresholds. The system must verify adequate context exists before attempting response generation.
 
-### Digital Twin (Isaac Sim / Gazebo / Unity)
-The digital twin serves as the primary development environment, featuring accurate physics simulation, realistic sensor models, and configurable environmental conditions. The twin enables rapid prototyping before hardware deployment with validation checkpoints for sim-to-real transfer.
+### Selected-Text Mode
+In "Selected-Text-Only" mode:
+- Retrieval scope is restricted to user-selected text only
+- No external or chapter-level context may be incorporated
+- The system must clearly indicate to users when this mode is active
 
-### Edge Brain (Jetson Orin)
-The Jetson Orin platform provides the standardized edge computing solution for real-time AI inference and control. All algorithms must operate within the computational, thermal, and power constraints of this platform to ensure deployability.
+### Default Mode
+In default mode:
+- Retrieval occurs from chapter/page-level embeddings
+- The system provides broader contextual understanding
+- Users are informed about the scope of information being used
 
-### Sensor Stack (RGB-D, LiDAR, IMU, Audio)
-The standardized sensor array includes RGB-D cameras for vision, LiDAR for ranging and mapping, IMU for orientation and motion, and audio systems for sound processing. All perception and navigation systems must integrate data from this complete sensor suite.
+### Content Boundaries
+The system must never introduce external knowledge, personal opinions, or unfounded assumptions. All responses must remain anchored to the book's content.
 
-### Actuation Layer (Humanoid or Proxy Robot)
-The actuation layer consists of human-scale articulated joints with precise position, velocity, and torque control. Systems must accommodate the kinematic constraints, dynamic properties, and safety requirements of humanoid form factors.
+## Quality Standards
 
-## Assessment Ethos
+### Factual Precision
+All responses must maintain high accuracy relative to the source material. Claims must be directly traceable to specific sections of the book content.
 
-### Working Systems Instead of Examinations
-Student competency is measured solely through functioning physical or simulated systems that demonstrate mastery of course concepts. Traditional exams are replaced by demonstration of operational robots performing specified tasks.
+### Technical Language
+Communication should use clear, concise technical language appropriate for readers with software engineering and AI backgrounds. Jargon should be used appropriately but defined when introducing new concepts.
 
-### Mandatory Failure Analysis
-When systems fail, students must conduct detailed failure analysis identifying root causes, proposing solutions, and implementing improvements. Understanding why systems fail is as important as understanding why they succeed.
+### Target Audience
+Content must be tailored for readers with software engineering and AI backgrounds, avoiding oversimplification while remaining accessible and educational.
 
-### Physical-World Competence Measurement
-Performance evaluation occurs in real or simulated physical environments with objective metrics measuring task completion, efficiency, robustness, and adaptation to perturbations. Success requires physical competence, not just algorithmic correctness.
+### Conciseness
+Responses should minimize verbosity and maximize informational signal. Eliminate redundant phrasing and focus on delivering value efficiently.
 
-## Ethics & Safety
+## Data & Logging
 
-### Physical Safety Constraints
-All robotic systems must incorporate redundant safety mechanisms preventing harm to humans, property, and the robots themselves. Safety takes precedence over performance in all design decisions. Emergency stops and collision avoidance are non-negotiable requirements.
+### Storage Requirements
+Store all chat queries, retrieved document IDs, and generated responses in Neon Postgres database for analytics, improvement, and compliance purposes.
 
-### Responsible Deployment of Embodied AI
-Development must consider the societal implications of autonomous, mobile AI systems. Students learn to design systems that enhance human capability rather than replace human agency. Privacy, consent, and transparency are fundamental considerations.
+### Mode Tracking
+Log whether "selected-text" or "global" mode was used for each query to understand usage patterns and improve the system.
 
-### Human-Centered Interaction Design
-Robotic interfaces must prioritize human comfort, comprehensibility, and trust. Interaction design emphasizes intuitive communication, predictable behaviors, and respectful engagement with people in shared spaces.
+### Privacy Protection
+Ensure no personally identifiable information (PII) is leaked or stored inadvertently. Implement proper sanitization of user inputs where necessary.
+
+### Audit Trail
+Maintain comprehensive logging to support troubleshooting, performance analysis, and quality assurance activities.
+
+## Failure Handling
+
+### Low Retrieval Score
+When retrieval scores fall below the established threshold, the system must respond with:
+"The selected text / book content does not contain sufficient information to answer this question."
+
+### Service Failures
+The system must gracefully degrade when external services (Cohere API, Qdrant, etc.) are unavailable, providing clear messages to users about the temporary limitation.
+
+### Error Recovery
+Implement mechanisms to recover from transient failures without losing user context or requiring restart of conversations.
+
+### Fallback Strategies
+Provide alternative pathways or manual support options when automated systems cannot adequately address user queries.
+
+## Compliance
+
+### Lifecycle Adherence
+Follow Spec-Kit Plus lifecycle strictly: /sp.specify → /sp.plan → /sp.tasks → /sp.implement. Do not auto-implement without explicit user confirmation.
+
+### User Confirmation
+Critical implementation steps require explicit user confirmation ("yes") before execution to prevent unwanted changes.
+
+### Technology Restrictions
+Adhere to the mandated tech stack without deviation unless explicitly approved through proper channels.
+
+### Specification Alignment
+All implementations must align with the original specification and core principles outlined in this constitution.
+
+## Success Criteria
+
+### Zero Hallucinations
+Achieve zero instances of fabricated information in responses. Any uncertainty must be explicitly acknowledged rather than masked with false information.
+
+### Accuracy Verification
+Maintain high factual accuracy by consistently citing and basing responses on the provided book content.
+
+### Context-Bounded Responses
+Ensure all answers remain within the boundaries of the provided context, whether from selected text or global retrieval.
+
+### Seamless Integration
+Successfully embed the chatbot within Docusaurus pages without disrupting the reading experience.
+
+### Performance Reliability
+Maintain reliable performance when consuming Cohere APIs and responding within acceptable timeframes.
 
 ## Governance
 
-This Constitution establishes the foundational principles governing all curriculum, code, labs, simulations, and assessments in the Physical AI & Humanoid Robotics course. All derivative materials must align with these principles. Amendments require documentation of rationale, approval from course leadership, and a migration plan for existing curriculum. All student projects and code must verify compliance with these principles. Deviations must be justified and approved before implementation.
+This Constitution establishes the foundational principles governing all development, implementation, and operation of the Integrated RAG Chatbot project. All derivative materials, code, documentation, and implementations must align with these principles. 
 
-**Version**: 1.0.0 | **Ratified**: 2025-01-15 | **Last Amended**: 2025-12-14
+Amendments to this Constitution require documentation of rationale, approval from project leadership, and a migration plan for existing components. All project artifacts must verify compliance with these principles. Any deviations must be justified and approved before implementation.
+
+**Version**: 1.0.1 | **Ratified**: 2025-01-15 | **Last Amended**: 2025-12-17

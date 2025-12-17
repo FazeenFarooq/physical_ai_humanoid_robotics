@@ -1,0 +1,55 @@
+.robotViewerContainer {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: rgba(10, 10, 18, 0.9);
+}
+
+.robotViewerHeader {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 2.5rem;
+  color: #D4AF37;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.robotViewer {
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  margin: 0 auto;
+  background: rgba(18, 18, 32, 0.9);
+  border: 1px solid #00D4FF;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00D4FF;
+  font-family: 'Roboto Mono', monospace;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.robotViewer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, transparent 79px, rgba(0, 212, 255, 0.1) 79px, rgba(0, 212, 255, 0.1) 81px, transparent 81px),
+    linear-gradient(0deg, transparent 79px, rgba(0, 212, 255, 0.1) 79px, rgba(0, 212, 255, 0.1) 81px, transparent 81px);
+  background-size: 100px 100px;
+  z-index: 0;
+}
+
+.robotModelPlaceholder {
+  text-align: center;
+  z-index: 1;
+}
+
+.robotModelPlaceholder p {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
